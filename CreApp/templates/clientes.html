@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreApp-Clientes</title>
+</head>
+<body>
+   
+    <table class="table table-striped">
+        <tr>
+            <th COLSPAN=1>Clientes</th>
+        </tr>
+        <tr>
+            <th><h2>ID</h2></th>
+            <th><h2>Nombre</h2></th>
+            <th><h2>Apellido</h2></th>
+            <th><h2>Teléfono</h2></th>
+            <th><h2>Correo</h2></th>
+        </tr>
+
+        {% for clien in cliente %}
+        <tr>
+            <td> {{clien.pk}} </td>
+            <td> {{clien.nombre}} </td>
+            <td> {{clien.apellido}} </td>
+            <td> {{clien.telefono}} </td>
+            <td> {{clien.correo}} </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+
+
+
+    
+</body>
+</html>
+
+{% endblock %}
