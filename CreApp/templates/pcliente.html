@@ -22,9 +22,9 @@
             <th><h2>Correo</h2></th>
         </tr>
 
-        {% for clien in cliente %}
+        {% for clien in pcliente %}
         <tr>
-            <td> {{clien.pk}} </td>
+            <td> <a href='/ppcliente/{{clien.id}}'> {{clien.id}}</a> </td>
             <td> {{clien.nombre}} </td>
             <td> {{clien.apellido}} </td>
             <td> {{clien.telefono}} </td>

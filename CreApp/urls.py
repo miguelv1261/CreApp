@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Crea.views import ver_propiedades_posible, ver_propiedad, index, captar_propiedad, ver_propiedades_disponibles, ver_propiedaddis
+from Crea.views import ver_propiedades_posible, ver_propiedad, index, captar_propiedad, ver_propiedades_disponibles, ver_propiedaddis, ver_pcliente, ver_pocliente
 
 urlpatterns = [
     path('', index),
@@ -26,4 +26,6 @@ urlpatterns = [
     path('propiedad/<int:codigo_propiedad>/', ver_propiedad ,name="detalle_propiedad"),
     path('propiedaddis/<int:codigo_propiedad>/', ver_propiedaddis ,name="detalle_propiedaddis"),
     path('captar_propiedad/<int:codigo_propiedad>/', captar_propiedad),
+    path('pcliente/', ver_pcliente),
+    path('ppcliente/<int:codigo_cliente>/', ver_pocliente),
 ]

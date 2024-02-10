@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from .models import Propiedad_posible, CaptarPropiedadForm, Propiedad_disponible
+from .models import Propiedad_posible, CaptarPropiedadForm, Propiedad_disponible, P_Cliente
 
 
 # Create your views here.
@@ -65,3 +65,19 @@ def captar_propiedad(request, codigo_propiedad):
     }
 
     return render(request, 'captar_propiedad.html', context)
+
+def ver_pcliente(request):
+    pcliente = P_Cliente.objects.all()
+    contenido = {
+        'pcliente' : pcliente
+    }
+    template = "pcliente.html"
+    return render(request, template, contenido)
+
+def ver_pocliente(request, codigo_cliente):
+    pcliente = P_Cliente.objects.get(pk = codigo_cliente )
+    contenido = {
+        "pcliente" :pcliente
+    }
+    template = "ppcliente.html"
+    return render(request, template, contenido)

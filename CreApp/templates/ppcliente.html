@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreApp-Clientes</title>
+</head>
+<body>
+   
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header">
+                <h1>Datos Posibles Clientes</h1>
+            </div>
+            <h3> {{pcliente.nombre}} {{pcliente.apellido}} </h3>
+            <h5>Telefono: {{pcliente.telefono}} </h5>
+            <h5>Email: {{pcliente.correo}} </h5>
+
+        </div>
+    </div>
+    <div class="container mt-4">
+        <div class="card">
+    <table>
+        <tr>
+            <h2>Observaciones</h2>
+        </tr>
+        <tr>
+            <td> {{pcliente.observaciones}} </td>
+        </tr>
+    </table>
+
+</div></div>
+
+
+    
+</body>
+</html>
+
+{% endblock %}
