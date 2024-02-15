@@ -1,7 +1,12 @@
 from django import forms
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
+
+def get_absolute_url(self):
+        return reverse('ver_propiedad', kwargs={'codigo_propiedad': self.id})
+
 
 class P_Cliente(models.Model):
     nombre = models.CharField(max_length=144, blank= False, null= False)
@@ -24,10 +29,12 @@ class Propiedad_posible(models.Model):
     tipo = models.CharField(max_length=15, choices=tipos)  
     descripcion = models.TextField(max_length=500, blank= False, null= False)
    # image = models.ImageField(upload_to="propiedades")
+    es_activo = models.BooleanField(blank=False, null=False, default=True, 
+                                    verbose_name='¿Propiedad activa?')
     precio_avaluo = models.DecimalField(max_digits=65, decimal_places = 2 ,blank = False, null = False)
     id_cliente = models.ForeignKey( P_Cliente, related_name ='pk', on_delete=models.CASCADE, null= True)
     def __str__(self) -> str:
-       return f'{self.tipo, self.precio, self.codigo}'
+       return f'{self.es_activo , self.tipo, self.precio, self.codigo}'
     
 class Cliente(models.Model):
     nombre = models.CharField(max_length=144, blank= False, null= False)
@@ -93,7 +100,3 @@ class Empleado(models.Model):
        return f'{self.tipo}'
     
     
-class CaptarPropiedadForm(forms.ModelForm):
-    class Meta:
-        model = Propiedad_disponible
-        fields = ('codigo', 'fecha_ingreso','fecha_caducidad', 'tipo', 'ubicacion', 'descripcion','tipo_comision', 'precio_comercial', 'precio_crea', 'precio_minimo', 'convenio', 'proceso')
