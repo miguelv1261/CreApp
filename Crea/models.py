@@ -92,7 +92,6 @@ class Empleado(models.Model):
     def __str__(self) -> str:
        return f'{self.tipo}'
     
-
     
 class CaptarPropiedadForm(forms.ModelForm):
     class Meta:
