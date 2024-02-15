@@ -4,8 +4,7 @@ from django.urls import reverse
 
 # Create your models here.
 
-def get_absolute_url(self):
-        return reverse('ver_propiedad', kwargs={'codigo_propiedad': self.id})
+
 
 
 class P_Cliente(models.Model):
@@ -33,9 +32,10 @@ class Propiedad_posible(models.Model):
                                     verbose_name='¿Propiedad activa?')
     precio_avaluo = models.DecimalField(max_digits=65, decimal_places = 2 ,blank = False, null = False)
     id_cliente = models.ForeignKey( P_Cliente, related_name ='pk', on_delete=models.CASCADE, null= True)
+
     def __str__(self) -> str:
 
-       return f'{self.tipo, self.precio, self.codigo}'
+       return f'{self.tipo, self.precio, self.codigo, self.es_activo}'
    
     def get_absolute_url(self):
        return reverse("detalle_propiedad", kwargs={'codigo_propiedad' : self.pk})
@@ -48,6 +48,7 @@ class Propiedad_posible(models.Model):
     
     def get_delete_url(self):
        return reverse("eliminar_propiedad", kwargs={'codigo_propiedad' : self.pk})
+    
 class Cliente(models.Model):
     nombre = models.CharField(max_length=144, blank= False, null= False)
     apellido = models.CharField(max_length=144, blank= False, null= False)
@@ -75,6 +76,7 @@ class Propiedad_disponible(models.Model):
         ("Porcentaje", "Porcentaje")
     )
     tipo_comision = models.CharField(max_length=15, choices=comision)
+    precio_pactado = models.DecimalField(max_digits=65, decimal_places = 2 ,blank = True, null = True)
     precio_comercial = models.DecimalField(max_digits=65, decimal_places = 2 ,blank = False, null = False)
     precio_crea = models.DecimalField(max_digits=65, decimal_places = 2 ,blank = False, null = False)
     precio_minimo = models.DecimalField(max_digits=65, decimal_places = 2 ,blank = False, null = False)
@@ -92,6 +94,9 @@ class Propiedad_disponible(models.Model):
 
     def __str__(self) -> str:
        return f'{self.codigo}'
+    
+    def get_absolute_url(self):
+        return reverse('ver_propieda ddis', kwargs={'codigo_propiedad': self.id})
    
     
 
