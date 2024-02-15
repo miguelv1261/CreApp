@@ -1,6 +1,7 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, redirect , get_object_or_404
 from .models import Propiedad_posible, CaptarPropiedadForm, Propiedad_disponible, P_Cliente
 
+from .forms import PropiedadForm
 
 # Create your views here.
 
@@ -16,6 +17,50 @@ def ver_propiedades_posible(request):
     template = "propiedades_posibles.html"
     return render(request, template, contenido)
 
+def nueva_propiedad(request):
+    contenido = {}
+    if request.method == 'POST':
+        contenido['form'] = PropiedadForm(
+                        request.POST or None,
+                        request.FILES or None,)
+        if contenido['form'].is_valid():
+            contenido['form'].save()
+            return redirect(contenido['form'].instance.get_absolute_url())
+        
+    contenido['instancia_propiedad'] = Propiedad_posible()
+    contenido ['form'] = PropiedadForm(
+        request.POST or None,
+        request.FILES or None,
+        instance = contenido['instancia_propiedad']
+    )
+    
+    return render(request, 'formulario_propiedad.html', contenido)
+
+def editar_propiedad(request, codigo_propiedad):
+    contenido = {}
+    contenido['propiedad'] = get_object_or_404(Propiedad_posible, pk = codigo_propiedad ) 
+    if request.method == 'POST':
+        contenido['form'] = PropiedadForm(
+                        request.POST or None,
+                        request.FILES or None,)
+        if contenido['form'].is_valid():
+            contenido['form'].save()
+            return redirect(contenido['form'].instance.get_absolute_url())
+        
+    contenido ['form'] = PropiedadForm(
+        request.POST or None,
+        request.FILES or None,
+        instance = contenido['propiedad']
+    )
+    
+    return render(request, 'formulario_propiedad.html', contenido)
+
+def eliminar_propiedad(request, codigo_propiedad):
+    contenido = {}
+    contenido['propiedad'] = get_object_or_404(Propiedad_posible, pk = codigo_propiedad ) 
+    contenido['propiedad'].delete()
+    return redirect('/propiedades_posibles/')
+    
 def ver_propiedades_disponibles(request):
     propiedad = Propiedad_disponible.objects.all()
     contenido = {
@@ -25,7 +70,9 @@ def ver_propiedades_disponibles(request):
     return render(request, template, contenido)
 
 def ver_propiedad(request, codigo_propiedad):
-    propiedad = Propiedad_posible.objects.get(pk = codigo_propiedad )
+    
+
+    propiedad = get_object_or_404(Propiedad_posible, pk = codigo_propiedad )
     cliente = propiedad.id_cliente
     contenido = {
         'propiedad' : propiedad,
@@ -33,7 +80,6 @@ def ver_propiedad(request, codigo_propiedad):
     }
     template = "propiedad.html"
     return render(request, template, contenido)
-
 def ver_propiedaddis(request, codigo_propiedad):
     propiedad = Propiedad_disponible.objects.get(pk = codigo_propiedad )
     cliente = propiedad.id_cliente

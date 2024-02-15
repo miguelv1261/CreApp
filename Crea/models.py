@@ -1,6 +1,6 @@
 from django import forms
 from django.db import models
-
+from django.urls import reverse
 # Create your models here.
 
 class P_Cliente(models.Model):
@@ -28,7 +28,15 @@ class Propiedad_posible(models.Model):
     id_cliente = models.ForeignKey( P_Cliente, related_name ='pk', on_delete=models.CASCADE, null= True)
     def __str__(self) -> str:
        return f'{self.tipo, self.precio, self.codigo}'
+   
+    def get_absolute_url(self):
+       return reverse("detalle_propiedad", kwargs={'codigo_propiedad' : self.pk})
+   
+    def get_edit_url(self):
+       return reverse("editar_propiedad", kwargs={'codigo_propiedad' : self.pk})
     
+    def get_delete_url(self):
+       return reverse("eliminar_propiedad", kwargs={'codigo_propiedad' : self.pk})
 class Cliente(models.Model):
     nombre = models.CharField(max_length=144, blank= False, null= False)
     apellido = models.CharField(max_length=144, blank= False, null= False)
