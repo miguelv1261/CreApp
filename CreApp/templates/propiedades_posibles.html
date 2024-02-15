@@ -20,13 +20,15 @@
         </tr>
 
                 {% for prop in propiedad %}
-                <tr>
-                    <td><a href='/propiedad/{{prop.pk}}'> {{prop.pk}}</a></td>
-                    <td>{{prop.tipo}}</td>
-                    <td>{{prop.ubicacion}}</td>
-                    <td>{{prop.precio}}</td>
-                    <td>{{prop.descripcion}}</td>
-                </tr>
+                    {% if prop.es_activo %}
+                    <tr>
+                        <td><a href='/propiedad/{{prop.pk}}'> {{prop.pk}}</a></td>
+                        <td>{{prop.tipo}}</td>
+                        <td>{{prop.ubicacion}}</td>
+                        <td>{{prop.precio}}</td>
+                        <td>{{prop.descripcion}}</td>
+                    </tr>
+                    {% endif %}
                 {% endfor %}
 
     </table>
