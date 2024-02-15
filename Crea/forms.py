@@ -1,7 +1,5 @@
 from django import forms
 from .models import *
-
-
 class PropiedadForm(forms.ModelForm):
     
     class Meta:
@@ -10,15 +8,12 @@ class PropiedadForm(forms.ModelForm):
 
 class CaptarPropiedadForm(forms.ModelForm):
     class Meta:
-        model = Propiedad_disponible , Propiedad_posible
+        model = Propiedad_disponible 
         fields = ('codigo', 
-                  'fecha_ingreso'=='fecha_registro',
-                  'fecha_caducidad'
+                  'fecha_ingreso',
+                  'fecha_caducidad',
                   'ubicacion', 
-                  'precio_comercial'=='precio', 
+                  'precio_comercial', 
                   'tipo',
                   'descripcion',
-                  'precio_avaluo',
-
                   )
-

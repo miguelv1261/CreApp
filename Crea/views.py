@@ -1,11 +1,11 @@
 from django.shortcuts import redirect, render, redirect , get_object_or_404
-from .models import Propiedad_posible, CaptarPropiedadForm, Propiedad_disponible, P_Cliente
+from .models import Propiedad_posible, Propiedad_disponible, P_Cliente
 
 from .forms import PropiedadForm
 
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import Propiedad_posible, Propiedad_disponible, P_Cliente, Cliente
-from .forms import CaptarPropiedadForm 
+from .forms import PropiedadForm , CaptarPropiedadForm 
 
 
 # Create your views here.
@@ -85,6 +85,7 @@ def ver_propiedad(request, codigo_propiedad):
     }
     template = "propiedad.html"
     return render(request, template, contenido)
+
 def ver_propiedaddis(request, codigo_propiedad):
     c = {}
     c['propiedaddis'] =  get_object_or_404(Propiedad_disponible, pk=codigo_propiedad)

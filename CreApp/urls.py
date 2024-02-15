@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Crea.views import ver_propiedades_posible, ver_propiedad, index, captar_propiedad, ver_propiedades_disponibles, ver_propiedaddis, ver_pcliente, ver_pocliente, nueva_propiedad,editar_propiedad, eliminar_propiedad
+from Crea.views import ver_propiedades_posible, ver_propiedad, index, captar_propiedad, ver_propiedades_disponibles, ver_propiedaddis, ver_pcliente, ver_pocliente, nueva_propiedad, editar_propiedad, eliminar_propiedad
 
 urlpatterns = [
     path('', index),
