@@ -1,11 +1,6 @@
 from django.shortcuts import redirect, render, redirect , get_object_or_404
-from .models import Propiedad_posible, Propiedad_disponible, P_Cliente
-
-from .forms import PropiedadForm
-
-from django.shortcuts import get_object_or_404, redirect, render
 from .models import Propiedad_posible, Propiedad_disponible, P_Cliente, Cliente
-from .forms import PropiedadForm , CaptarPropiedadForm 
+from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm
 
 
 # Create your views here.
@@ -62,7 +57,7 @@ def editar_propiedad(request, codigo_propiedad):
 
 def eliminar_propiedad(request, codigo_propiedad):
     contenido = {}
-    contenido['propiedad'] = get_object_or_404(Propiedad_posible, pk = codigo_propiedad ) 
+    contenido['propiedad'] = get_object_or_404(Propiedad_posible, pk = codigo_propiedad) 
     contenido['propiedad'].delete()
     return redirect('/propiedades_posibles/')
     
@@ -75,8 +70,6 @@ def ver_propiedades_disponibles(request):
     return render(request, template, contenido)
 
 def ver_propiedad(request, codigo_propiedad):
-    
-
     propiedad = get_object_or_404(Propiedad_posible, pk = codigo_propiedad )
     cliente = propiedad.id_cliente
     contenido = {
@@ -115,15 +108,59 @@ def captar_propiedad(request, codigo_propiedad):
     return render(request, 'captar_propiedad.html', c)
 
 def ver_pcliente(request):
-    pcliente = P_Cliente.objects.all()
+    cliente = Cliente.objects.all()
     contenido = {
-        'pcliente' : pcliente
+        'cliente' : cliente
     }
     template = "pcliente.html"
     return render(request, template, contenido)
 
+def nuevo_cliente(request):
+    contenido = {}
+    if request.method == 'POST':
+        contenido['form'] = ClienteForm(
+                        request.POST or None,
+                        request.FILES or None,)
+        if contenido['form'].is_valid():
+            contenido['form'].save()
+            return redirect(contenido['form'].instance.get_absolute_url())
+        
+    contenido['instancia_cliente'] = Cliente()
+    contenido ['form'] = ClienteForm(
+        request.POST or None,
+        request.FILES or None,
+        instance = contenido['instancia_cliente']
+    )
+    
+    return render(request, 'formulario_cliente.html', contenido)
+
+def editar_cliente(request, codigo_cliente):
+    contenido = {}
+    contenido['cliente'] = get_object_or_404(Cliente, pk = codigo_cliente) 
+    if request.method == 'POST':
+        contenido['form'] = ClienteForm(
+                        request.POST or None,
+                        request.FILES or None,)
+        if contenido['form'].is_valid():
+            contenido['form'].save()
+            return redirect(contenido['form'].instance.get_absolute_url())
+        
+    contenido ['form'] = ClienteForm(
+        request.POST or None,
+        request.FILES or None,
+        instance = contenido['cliente']
+    )
+    
+    return render(request, 'formulario_cliente.html', contenido)
+
+def eliminar_cliente(request, codigo_cliente):
+    contenido = {}
+    contenido['cliente'] = get_object_or_404(Cliente, pk = codigo_cliente ) 
+    contenido['cliente'].delete()
+    return redirect('/pcliente/')
+
 def ver_pocliente(request, codigo_cliente):
-    pcliente = P_Cliente.objects.get(pk = codigo_cliente )
+    pcliente = Cliente.objects.get(pk = codigo_cliente )
     contenido = {
         "pcliente" :pcliente
     }

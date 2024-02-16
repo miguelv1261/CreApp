@@ -32,7 +32,7 @@ class Propiedad_posible(models.Model):
     es_activo = models.BooleanField(blank=False, null=False, default=True, 
                                     verbose_name='¿Propiedad activa?')
     precio_avaluo = models.DecimalField(max_digits=65, decimal_places = 2 ,blank = False, null = False)
-    id_cliente = models.ForeignKey( P_Cliente, related_name ='pk', on_delete=models.CASCADE, null= True)
+    id_cliente = models.ForeignKey(P_Cliente, related_name ='pk', on_delete=models.CASCADE, null= True)
     def __str__(self) -> str:
 
        return f'{self.tipo, self.precio, self.codigo}'
@@ -59,6 +59,14 @@ class Cliente(models.Model):
     def __str__(self) -> str:
        return f'{self.nombre}'
 
+    def get_absolute_url(self):
+       return reverse("ver_pocliente", kwargs={'codigo_cliente' : self.pk})
+   
+    def get_edit_url(self):
+       return reverse("editar_cliente", kwargs={'codigo_cliente' : self.pk})
+   
+    def get_delete_url(self):
+       return reverse("eliminar_cliente", kwargs={'codigo_cliente' : self.pk})
 class Propiedad_disponible(models.Model):
     codigo = models.CharField(max_length=144, blank= False, null= False)
     fecha_ingreso = models.DateField()

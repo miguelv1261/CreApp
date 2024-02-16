@@ -20,15 +20,17 @@
             <th><h2>Apellido</h2></th>
             <th><h2>Teléfono</h2></th>
             <th><h2>Correo</h2></th>
+            
         </tr>
 
-        {% for clien in pcliente %}
+        {% for clien in cliente %}
         <tr>
             <td> <a href='/ppcliente/{{clien.id}}'> {{clien.id}}</a> </td>
             <td> {{clien.nombre}} </td>
             <td> {{clien.apellido}} </td>
             <td> {{clien.telefono}} </td>
             <td> {{clien.correo}} </td>
+            
         </tr>
         {% endfor %}
 
