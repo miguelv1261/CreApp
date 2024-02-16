@@ -40,13 +40,10 @@
 <div class="container mt-4">
     <div class="card">
         <form action="/captar_propiedad/{{propiedad.pk}} ">
-            <button type="submit">Captar</button>
-        </form>
-        <button onclick='"captar_propiedad.html"' >Captar</button>
-        <button>Captar Urgente</button>
-        <button>Descartar</button>
-        <a type="button" href="{{ propiedad.get_delete_url }}" class="btn btn-danger">Eliminar</a>
+            <button type="submit" class="btn btn-success">Captar</button>
+            <a type="button" href="{{ propiedad.get_delete_url }}" class="btn btn-danger">Eliminar</a>
         <a type="button" href="{{ propiedad.get_edit_url }}" class="btn btn-warning">Editar</a>
+        </form>
     </div>
 </div>
     
