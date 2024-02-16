@@ -5,56 +5,6 @@ from django.urls import reverse
 # Create your models here.
 
 
-
-
-class P_Cliente(models.Model):
-    nombre = models.CharField(max_length=144, blank= False, null= False)
-    apellido = models.CharField(max_length=144, blank= False, null= False)
-    telefono = models.CharField(max_length=144, blank= False, null= False)
-    correo = models.EmailField(max_length=144, blank= False, null= False)
-    observaciones = models.CharField(max_length=144, blank= False, null= False)
-    def __str__(self) -> str:
-       return f'{self.nombre}'
-    
-#MODELO PROPIEDAD DISPONIBLE
-
-class Propiedad_posible(models.Model):
-    codigo = models.CharField(max_length=144, blank= False, null= False)
-    fecha_registro = models.DateField()
-    ubicacion = models.CharField(max_length=144, blank= False, null= False)
-    precio = models.DecimalField(max_digits=65, decimal_places = 2 ,blank = False, null = False)
-    tipos = (
-        ("Casa", "Casa"),
-        ("Terreno", "Terreno"),
-    )
-    tipo = models.CharField(max_length=15, choices=tipos)  
-    descripcion = models.TextField(max_length=500, blank= False, null= False)
-   # image = models.ImageField(upload_to="propiedades")
-    es_activo = models.BooleanField(blank=False, null=False, default=True, 
-                                    verbose_name='¿Propiedad activa?')
-    precio_avaluo = models.DecimalField(max_digits=65, decimal_places = 2 ,blank = False, null = False)
-
-    id_cliente = models.ForeignKey( P_Cliente, related_name ='pk', on_delete=models.CASCADE, null= True)
-
-
-    def __str__(self) -> str:
-
-       return f'{self.tipo, self.precio, self.codigo, self.es_activo}'
-   
-    def get_absolute_url(self):
-       return reverse("detalle_propiedad", kwargs={'codigo_propiedad' : self.pk})
-   
-    def get_edit_url(self):
-       return reverse("editar_propiedad", kwargs={'codigo_propiedad' : self.pk})
-
-       return f'{self.es_activo , self.tipo, self.precio, self.codigo}'
-
-    
-    def get_delete_url(self):
-       return reverse("eliminar_propiedad", kwargs={'codigo_propiedad' : self.pk})
-    
-
-
 #MODELO CLIENTE
 
 class Cliente(models.Model):
@@ -80,6 +30,49 @@ class Cliente(models.Model):
 
 
        return reverse("eliminar_cliente", kwargs={'codigo_cliente' : self.id})
+
+
+    
+#MODELO PROPIEDAD DISPONIBLE
+
+class Propiedad_posible(models.Model):
+    codigo = models.CharField(max_length=144, blank= False, null= False)
+    fecha_registro = models.DateField()
+    ubicacion = models.CharField(max_length=144, blank= False, null= False)
+    precio = models.DecimalField(max_digits=65, decimal_places = 2 ,blank = False, null = False)
+    tipos = (
+        ("Casa", "Casa"),
+        ("Terreno", "Terreno"),
+    )
+    tipo = models.CharField(max_length=15, choices=tipos)  
+    descripcion = models.TextField(max_length=500, blank= False, null= False)
+   # image = models.ImageField(upload_to="propiedades")
+    es_activo = models.BooleanField(blank=False, null=False, default=True, 
+                                    verbose_name='¿Propiedad activa?')
+    precio_avaluo = models.DecimalField(max_digits=65, decimal_places = 2 ,blank = False, null = False)
+
+    id_cliente = models.ForeignKey( Cliente, related_name ='id_cliente', on_delete=models.CASCADE, null= True)
+
+
+    def __str__(self) -> str:
+
+       return f'{self.tipo, self.precio, self.codigo, self.es_activo}'
+   
+    def get_absolute_url(self):
+       return reverse("detalle_propiedad", kwargs={'codigo_propiedad' : self.pk})
+   
+    def get_edit_url(self):
+       return reverse("editar_propiedad", kwargs={'codigo_propiedad' : self.pk})
+
+       return f'{self.es_activo , self.tipo, self.precio, self.codigo}'
+
+    
+    def get_delete_url(self):
+       return reverse("eliminar_propiedad", kwargs={'codigo_propiedad' : self.pk})
+    
+
+
+
   
 #MODELO PROPIEDAD DISPONIBLE
 

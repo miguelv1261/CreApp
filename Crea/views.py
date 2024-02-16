@@ -6,7 +6,7 @@ from django.core.validators import ValidationError
 
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .models import Propiedad_posible, Propiedad_disponible, P_Cliente, Cliente
+from .models import Propiedad_posible, Propiedad_disponible, Cliente
 from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm
 
 
