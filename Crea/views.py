@@ -186,7 +186,7 @@ def eliminar_cliente(request, codigo_cliente):
     contenido = {}
     contenido['cliente'] = get_object_or_404(Cliente, pk = codigo_cliente) 
     contenido['cliente'].delete()
-    return redirect('/propiedades_posibles/')
+    return redirect('/pcliente/')
 
 def ver_pocliente(request, codigo_cliente):
     cliente = get_object_or_404(Cliente, pk = codigo_cliente )
