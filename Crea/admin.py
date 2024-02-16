@@ -20,4 +20,4 @@ class ClientePAdmin(admin.ModelAdmin):
 
 @admin.register(Empleado)
 class EmpleadoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'username')
+    list_display = ('id', )
