@@ -1,4 +1,5 @@
 import datetime
+from msilib.schema import ListView
 from django.shortcuts import redirect, render, redirect , get_object_or_404
 
 from django.core.validators import ValidationError
@@ -189,13 +190,16 @@ def eliminar_cliente(request, codigo_cliente):
     return redirect('/pcliente/')
 
 def ver_pocliente(request, codigo_cliente):
-<<<<<<< Updated upstream
+
     cliente = get_object_or_404(Cliente, pk = codigo_cliente )
-=======
-    pcliente = Cliente.objects.get( pk = codigo_cliente )
->>>>>>> Stashed changes
+
+    propiedad = get_object_or_404(Propiedad_disponible, id_cliente =cliente.id )
+    
     contenido = {
-        "cliente" :cliente
+        "cliente" :cliente,
+        "propiedad" : propiedad
     }
     template = "ppcliente.html"
     return render(request, template, contenido)
+
+

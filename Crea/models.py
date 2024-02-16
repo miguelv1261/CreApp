@@ -15,6 +15,8 @@ class P_Cliente(models.Model):
     observaciones = models.CharField(max_length=144, blank= False, null= False)
     def __str__(self) -> str:
        return f'{self.nombre}'
+    
+#MODELO PROPIEDAD DISPONIBLE
 
 class Propiedad_posible(models.Model):
     codigo = models.CharField(max_length=144, blank= False, null= False)
@@ -51,6 +53,10 @@ class Propiedad_posible(models.Model):
     def get_delete_url(self):
        return reverse("eliminar_propiedad", kwargs={'codigo_propiedad' : self.pk})
     
+
+
+#MODELO CLIENTE
+
 class Cliente(models.Model):
     nombre = models.CharField(max_length=144, blank= False, null= False)
     apellido = models.CharField(max_length=144, blank= False, null= False)
@@ -63,23 +69,18 @@ class Cliente(models.Model):
        return f'{self.nombre}'
 
     def get_absolute_url(self):
-<<<<<<< Updated upstream
+
        return reverse("detalle_cliente", kwargs={'codigo_cliente' : self.id})
-=======
-       return reverse("detalle_cliente", kwargs={'codigo_cliente' : self.pk})
->>>>>>> Stashed changes
    
     def get_edit_url(self):
        return reverse("editar_cliente", kwargs={'codigo_cliente' : self.id})
    
     def get_delete_url(self):
-<<<<<<< Updated upstream
-       return reverse("eliminar_cliente", kwargs={'codigo_cliente' : self.id})
-=======
-       return reverse("eliminar_cliente", kwargs={'codigo_cliente' : self.pk})
-    
 
->>>>>>> Stashed changes
+       return reverse("eliminar_cliente", kwargs={'codigo_cliente' : self.id})
+  
+#MODELO PROPIEDAD DISPONIBLE
+
 class Propiedad_disponible(models.Model):
     codigo = models.CharField(max_length=144, blank= False, null= False)
     fecha_ingreso = models.DateField()
@@ -107,15 +108,16 @@ class Propiedad_disponible(models.Model):
     convenio = models.CharField(max_length=20, choices=conv)
     proc = (
         ("Proceso de Venta", "Proceso de Venta"),
-        ("Vendida", "Vendida")
+        ("Vendida", "Vendida"),
+        ("Jurídico", "Jurídico")
     )
     proceso = models.CharField(max_length=20, choices=proc)
     id_cliente = models.ForeignKey(Cliente, related_name ='pk', on_delete=models.CASCADE, null= True)
 
     def __str__(self) -> str:
        return f'{self.codigo}'
-
     
+#MODELO EMPLEADO    
 
 class Empleado(models.Model):
     nombre = models.CharField(max_length=144, blank= False, null= True)

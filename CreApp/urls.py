@@ -34,4 +34,5 @@ urlpatterns = [
     path('cliente/nuevo', nuevo_cliente ,name="nuevo_cliente"),
     path('cliente/editar/<int:codigo_cliente>/', editar_cliente ,name="editar_cliente"),
     path('cliente/eliminar/<int:codigo_cliente>/', eliminar_cliente ,name="eliminar_cliente"),
+    
 ]

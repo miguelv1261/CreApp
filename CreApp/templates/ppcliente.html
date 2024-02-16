@@ -22,22 +22,38 @@
 
         </div>
     </div>
+
     <div class="container mt-4">
         <div class="card">
-    <table>
-        <tr>
-            <h2>Observaciones</h2>
-        </tr>
-        <tr>
-            <td> {{cliente.observaciones}} </td>
-            
-        </tr>
-        <td><a type="button" href="{{ cliente.get_delete_url }}" class="btn btn-danger">Eliminar</a>
-            <a type="button" href="{{ cliente.get_edit_url }}" class="btn btn-warning">Editar</a> 
-        </td>
-    </table>
+            <div class="card-header">
+                <h1>Seguimiento Procesos</h1>
+            </div>
+            {% for prop in propiedad %}
+            <h3> {{prop.codigo}}  </h3>
+            <h2> {{prop.fecha_ingreso}} </h2>
+            <h2> {{prop.proceso}} </h2>
+            {%endfor%}
+        </div>
+    </div>
 
-</div></div>
+
+    <div class="container mt-4">
+        <div class="card">
+            <table>
+                <tr>
+                    <h2>Observaciones</h2>
+                </tr>
+                <tr>
+                    <td> {{cliente.observaciones}} </td>
+                    
+                </tr>
+                <td>
+                    <a type="button" href="{{ cliente.get_delete_url }}" class="btn btn-danger">Eliminar</a>
+                    <a type="button" href="{{ cliente.get_edit_url }}" class="btn btn-warning">Editar</a> 
+                </td>
+            </table>
+        </div>
+    </div>
 
 
     
