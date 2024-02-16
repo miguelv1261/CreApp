@@ -189,11 +189,7 @@ def eliminar_cliente(request, codigo_cliente):
     return redirect('/pcliente/')
 
 def ver_pocliente(request, codigo_cliente):
-<<<<<<< Updated upstream
     cliente = get_object_or_404(Cliente, pk = codigo_cliente )
-=======
-    pcliente = Cliente.objects.get( pk = codigo_cliente )
->>>>>>> Stashed changes
     contenido = {
         "cliente" :cliente
     }
