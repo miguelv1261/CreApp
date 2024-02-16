@@ -63,13 +63,23 @@ class Cliente(models.Model):
        return f'{self.nombre}'
 
     def get_absolute_url(self):
+<<<<<<< Updated upstream
        return reverse("detalle_cliente", kwargs={'codigo_cliente' : self.id})
+=======
+       return reverse("detalle_cliente", kwargs={'codigo_cliente' : self.pk})
+>>>>>>> Stashed changes
    
     def get_edit_url(self):
        return reverse("editar_cliente", kwargs={'codigo_cliente' : self.id})
    
     def get_delete_url(self):
+<<<<<<< Updated upstream
        return reverse("eliminar_cliente", kwargs={'codigo_cliente' : self.id})
+=======
+       return reverse("eliminar_cliente", kwargs={'codigo_cliente' : self.pk})
+    
+
+>>>>>>> Stashed changes
 class Propiedad_disponible(models.Model):
     codigo = models.CharField(max_length=144, blank= False, null= False)
     fecha_ingreso = models.DateField()
@@ -104,26 +114,22 @@ class Propiedad_disponible(models.Model):
 
     def __str__(self) -> str:
        return f'{self.codigo}'
-    
-    def get_absolute_url(self):
-        return reverse('ver_propieda ddis', kwargs={'codigo_propiedad': self.id})
-   
-    
 
     
 
 class Empleado(models.Model):
-    username = models.CharField(max_length=144, blank= False, null= False)
-    email  = models.EmailField(max_length=144, blank= False, null= False)
-    tipos = (
-        ("User", "User"),
-        ("Admin", "Admin"),
+    nombre = models.CharField(max_length=144, blank= False, null= True)
+    apellido = models.CharField(max_length=144, blank= False, null= True)
+    correo  = models.EmailField(max_length=144, blank= False, null= True)
+    areas = (
+        ("Aprobicionamiento", "Aprobicionamiento"),
+        ("Ventas", "Ventas"),
+        ("Tramites", "Tramites"),
     )
-    tipo = models.CharField(max_length=15, choices=tipos)
-    password = models.CharField(max_length=144, blank= False, null= False)
-    telefono = models.CharField(max_length=144, blank= False, null= False)
+    area = models.CharField(max_length=50, choices=areas, blank= False, null= True)
+    telefono = models.CharField(max_length=144, blank= False, null= True)
     
     def __str__(self) -> str:
-       return f'{self.tipo}'
+       return f'{self.nombre}'
     
     
