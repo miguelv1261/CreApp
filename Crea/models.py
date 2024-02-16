@@ -70,6 +70,7 @@ class Cliente(models.Model):
 
     def get_absolute_url(self):
 
+
        return reverse("detalle_cliente", kwargs={'codigo_cliente' : self.id})
    
     def get_edit_url(self):
@@ -77,9 +78,13 @@ class Cliente(models.Model):
    
     def get_delete_url(self):
 
+
        return reverse("eliminar_cliente", kwargs={'codigo_cliente' : self.id})
   
 #MODELO PROPIEDAD DISPONIBLE
+
+
+       return reverse("eliminar_cliente", kwargs={'codigo_cliente' : self.id})
 
 class Propiedad_disponible(models.Model):
     codigo = models.CharField(max_length=144, blank= False, null= False)

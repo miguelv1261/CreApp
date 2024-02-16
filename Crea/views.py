@@ -191,10 +191,14 @@ def eliminar_cliente(request, codigo_cliente):
 
 def ver_pocliente(request, codigo_cliente):
 
+
     cliente = get_object_or_404(Cliente, pk = codigo_cliente )
 
     propiedad = get_object_or_404(Propiedad_disponible, id_cliente =cliente.id )
     
+
+    cliente = get_object_or_404(Cliente, pk = codigo_cliente )
+
     contenido = {
         "cliente" :cliente,
         "propiedad" : propiedad
