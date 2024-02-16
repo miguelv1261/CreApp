@@ -27,7 +27,7 @@ urlpatterns = [
     path('propiedaddis/<int:codigo_propiedad>/', ver_propiedaddis ,name="detalle_propiedaddis"),
     path('captar_propiedad/<int:codigo_propiedad>/', captar_propiedad),
     path('pcliente/', ver_pcliente),
-    path('ppcliente/<int:codigo_cliente>/', ver_pocliente, name="detalle_cliente"),
+    path('cliente/<int:codigo_cliente>/', ver_pocliente, name="detalle_cliente"),
     path('propiedad/nuevo', nueva_propiedad ,name="nueva_propiedad"),
     path('propiedad/editar/<int:codigo_propiedad>/', editar_propiedad ,name="editar_propiedad"),
     path('propiedad/eliminar/<int:codigo_propiedad>/', eliminar_propiedad ,name="eliminar_propiedad"),

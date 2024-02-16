@@ -184,14 +184,14 @@ def editar_cliente(request, codigo_cliente):
 
 def eliminar_cliente(request, codigo_cliente):
     contenido = {}
-    contenido['cliente'] = get_object_or_404(Cliente, pk = codigo_cliente ) 
+    contenido['cliente'] = get_object_or_404(Cliente, pk = codigo_cliente) 
     contenido['cliente'].delete()
-    return redirect('/pcliente/')
+    return redirect('/propiedades_posibles/')
 
 def ver_pocliente(request, codigo_cliente):
-    pcliente = Cliente.objects.get(pk = codigo_cliente )
+    cliente = get_object_or_404(Cliente, pk = codigo_cliente )
     contenido = {
-        "pcliente" :pcliente
+        "cliente" :cliente
     }
     template = "ppcliente.html"
     return render(request, template, contenido)

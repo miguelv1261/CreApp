@@ -63,13 +63,13 @@ class Cliente(models.Model):
        return f'{self.nombre}'
 
     def get_absolute_url(self):
-       return reverse("ver_pocliente", kwargs={'codigo_cliente' : self.pk})
+       return reverse("detalle_cliente", kwargs={'codigo_cliente' : self.id})
    
     def get_edit_url(self):
-       return reverse("editar_cliente", kwargs={'codigo_cliente' : self.pk})
+       return reverse("editar_cliente", kwargs={'codigo_cliente' : self.id})
    
     def get_delete_url(self):
-       return reverse("eliminar_cliente", kwargs={'codigo_cliente' : self.pk})
+       return reverse("eliminar_cliente", kwargs={'codigo_cliente' : self.id})
 class Propiedad_disponible(models.Model):
     codigo = models.CharField(max_length=144, blank= False, null= False)
     fecha_ingreso = models.DateField()
