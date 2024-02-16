@@ -12,10 +12,16 @@ class CaptarPropiedadForm(forms.ModelForm):
         fields = ('codigo', 
                   'fecha_ingreso',
                   'fecha_caducidad',
-                  'ubicacion', 
-                  'precio_comercial', 
                   'tipo',
+                  'ubicacion',
                   'descripcion',
+                  'tipo_comision',
+                  'precio_pactado',
+                  'precio_comercial', 
+                  'precio_crea',
+                  'precio_minimo',
+                  'convenio',
+                  'proceso'
                   )
         
 class ClienteForm(forms.ModelForm):

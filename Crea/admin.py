@@ -4,7 +4,7 @@ from .models import Propiedad_disponible, Propiedad_posible, P_Cliente, Cliente,
 
 @admin.register(Propiedad_posible)
 class PropiedadPAdmin(admin.ModelAdmin):
-    list_display = ('id', 'tipo', 'precio')
+    list_display = ('id','es_activo', 'tipo', 'precio')
 
 @admin.register(Propiedad_disponible)
 class PropiedadDAdmin(admin.ModelAdmin):
